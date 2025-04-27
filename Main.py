@@ -14,7 +14,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://192.168.1.3:5173",  # Your machine's frontend
+        "http://192.168.1.7:5173",  # Your machine's frontend
         "http://localhost:5173",  # Local dev
         "http://192.168.1.4:5173",  # Other devices on Wi-Fi (add more as needed)
         "*",  # Temporary for testing across Wi-Fi

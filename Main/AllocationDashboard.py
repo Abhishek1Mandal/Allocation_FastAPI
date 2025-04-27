@@ -417,6 +417,8 @@ async def upload_to_db(request):
             "Asset/Product",
             "acceptanceStatus",
             "assignedStatus",
+            "latitude",
+            "longitude",
         ]
 
         # Filter data to only include columns_to_keep

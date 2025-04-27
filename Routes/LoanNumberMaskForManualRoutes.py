@@ -12,35 +12,6 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
-# Define required columns that must be present in the uploaded file
-required_columns = [
-    "Assigned_FOS",
-    "Assigned_FOS_ID",
-    "BKT/DPD",
-    "Cus_Add",
-    "Cus_Mobile",
-    "Cus_Name",
-    "Distance (KM)",
-    "EMI",
-    "Emp_Address",
-    "LoanNo/CC",
-    "Masked_LoanNo/CC",
-    "Asset/Product",
-    "POS",
-    "Perma_Add",
-    "Port",
-    "TAD",
-    "TC_ID",
-    "TC_Name",
-    "TL_ID",
-    "TL_Name",
-    "acceptanceStatus",
-    "assignedStatus",
-    "latitude",
-    "longitude",
-]
-
-
 # API endpoint to process Excel file
 @router.post("/manual_process_excel/")
 async def process_excel(file: UploadFile = File(...), column_name: str = Form(...)):
@@ -62,18 +33,9 @@ async def process_excel(file: UploadFile = File(...), column_name: str = Form(..
         logger.info(f"Checking columns in file: {temp_input_path}")
         df = pd.read_excel(temp_input_path)
 
-        # Check if all required columns are present
-        missing_columns = [col for col in required_columns if col not in df.columns]
-        if missing_columns:
-            logger.error(f"Missing required columns: {missing_columns}")
-            raise HTTPException(
-                status_code=400,
-                detail=f"The following required columns are missing: {', '.join(missing_columns)}",
-            )
-
         # Process the file with the specified column and required columns
         logger.info(f"Processing file with column: {column_name}")
-        output_path = process_dataframe(temp_input_path, column_name, required_columns)
+        output_path = process_dataframe(temp_input_path, column_name)
 
         # Return the processed file
         logger.info(f"Returning processed file: {output_path}")
