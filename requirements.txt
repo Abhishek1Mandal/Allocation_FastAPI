@@ -1,0 +1,15 @@
+Flask
+pandas
+numpy
+python-dotenv
+pymongo
+openpyxl
+pytz
+flask-cors
+werkzeug
+tkinter
+requests
+flask-cors
+fastapi
+uvicorn
+python-multipart
