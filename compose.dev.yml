@@ -1,0 +1,12 @@
+services:
+  fastapi-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: raider-allocation
+    ports:
+      - "5050:5050"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
