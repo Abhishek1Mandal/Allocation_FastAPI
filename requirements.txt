@@ -9,3 +9,6 @@ requests
 fastapi
 uvicorn
 python-multipart
+motor
+pydantic
+passlib[bcrypt]
