@@ -86,13 +86,13 @@ async def create_employee(emp: EmployeeIn) -> dict:
 load_dotenv()
 
 # Get configuration from .env
-mongo_uri = os.getenv("MONGO_URI")
-db_name = os.getenv("DB_NAME", "recoverEase")  # Default fallback if not set
+mongo_uri = os.getenv("ATLAS_MONGO_URI")
+db_name = os.getenv("MONGO_DATABASE", "recoverEase")  # Default fallback if not set
 collection_name = os.getenv("COLLECTION_NAME", "testUsers")  # Default fallback if not set
 
 # Validate required environment variables
 if not mongo_uri:
-    raise ValueError("MONGO_URI not found in .env file")
+    raise ValueError("ATLAS_MONGO_URI not found in .env file")
 
 # Try connecting to MongoDB
 try:
