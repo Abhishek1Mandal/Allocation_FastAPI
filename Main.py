@@ -7,6 +7,7 @@ from Routes.LoanNumberMaskForManualRoutes import router as manual_loan_mask_rout
 from Routes.GPSDistanceRoutes import router as gps_distance_router
 from Routes.LoanProcessingRoutes import router as loan_processing_router
 from Routes.ExcelUploadRoutes import router as excel_upload_router
+from Routes.CredentialsRoutes import router as credential_router
 
 app = FastAPI()
 
@@ -14,8 +15,8 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://192.168.1.11:5173",  # Your machine's frontend
-        "http://192.168.1.4:5173",  # Other devices on Wi-Fi (add more as needed)
+        "http://192.168.0.107:5173",  # Your machine's frontend
+        "http://192.168.1.6:5173",  # Other devices on Wi-Fi (add more as needed)
         "*",  # Temporary for testing across Wi-Fi
     ],
     allow_credentials=True,
@@ -31,6 +32,9 @@ app.include_router(manual_loan_mask_router, prefix="/manualloanmask")
 app.include_router(gps_distance_router, prefix="/gps-distance")
 app.include_router(loan_processing_router, prefix="/loan-processing")
 app.include_router(excel_upload_router, prefix="/excel-upload")
+app.include_router(credential_router, prefix="/credential")
+
+
 
 if __name__ == "__main__":
     import uvicorn
