@@ -15,15 +15,14 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://192.168.0.107:5173",  # Your machine's frontend
-        "http://192.168.1.6:5173",  # Other devices on Wi-Fi (add more as needed)
+        "http://192.168.1.150:5173",  # Your machine's frontend
+        "http://192.168.1.150:5173",  # Other devices on Wi-Fi (add more as needed)
         "*",  # Temporary for testing across Wi-Fi
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # Include the routes
 app.include_router(allocation_router)
 app.include_router(gps_router, prefix="/gps")
